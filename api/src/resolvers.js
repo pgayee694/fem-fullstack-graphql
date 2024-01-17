@@ -5,11 +5,16 @@
 
 module.exports = {
   Query: {
-    
+    GetUser(_, __, { models }) {
+      return models.User.findOne()
+    },
+    GetPet(_, name, { models }) {
+      return models.Pet.findOne(pet => pet.name === name)
+    }
   },
-  Mutation: {
+  // Mutation: {
     
-  },
+  // },
   Pet: {
     img(pet) {
       return pet.type === 'DOG'
