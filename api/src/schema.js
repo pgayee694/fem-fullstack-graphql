@@ -5,7 +5,7 @@ const { gql } = require('apollo-server')
  */
 const typeDefs = gql`
     type User {
-        id: String!
+        id: ID!
         username: String!
     }
 
@@ -17,9 +17,18 @@ const typeDefs = gql`
         img: String!
     }
 
+    input GetPetsInput {
+        type: String!
+    }
+
+    input GetPetInput {
+        name: String!
+    }
+
     type Query {
         GetUser: User
-        GetPet(name: String!): Pet
+        GetPets(input: GetPetsInput!): [Pet]!
+        GetPet(input: GetPetInput!): Pet
     }
 `;
 
